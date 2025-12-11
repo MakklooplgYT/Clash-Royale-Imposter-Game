@@ -1,6 +1,8 @@
 /* main */
 html{
   font-size: 2em;
+  max-height:100vh;
+  max-width:100vw;
 }
 html, body {
   margin: 0px;
