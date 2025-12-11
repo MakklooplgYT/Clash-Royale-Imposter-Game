@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -5,29 +6,44 @@
 <title>Clash Royale Imposter Game</title>
 <link rel="stylesheet" href="style.css">
 <link rel="icon" type="image/png" href="https://github.com/MakklooplgYT/Clash-Royale-Imposter-Game/blob/main/favicon.png?raw=true">
+
 <style>
-  body { font-family: 'Trebuchet MS', sans-serif; 
+  body { font-family: 'Trebuchet MS', sans-serif; }
 </style>
 </head>
 <body>
+
 <header>
   <a href="https://makklooplgyt.github.io/Clash-Royale-Imposter-Game/">
-  <img src="https://raw.githubusercontent.com/MakklooplgYT/Clash-Royale-Imposter-Game/refs/heads/main/header-logo.png" 
-       alt="Clash Royale Imposter Game logo" 
-       class="header-logo">
-</a>
+    <img src="https://raw.githubusercontent.com/MakklooplgYT/Clash-Royale-Imposter-Game/refs/heads/main/header-logo.png" 
+         alt="Clash Royale Imposter Game logo" 
+         class="header-logo">
+  </a>
 </header>
+
 <div class="main-box">
     <h1>Clash Royale<br>Imposter Game</h1>
 
     <label>
         Number of Players:
-        <input type="number" id="players" value="4">
+        <div class="num-input-wrapper">
+            <input type="number" id="players" value="4">
+            <div class="num-btns">
+                <button onclick="changeValue('players', -1)">−</button>
+                <button onclick="changeValue('players', 1)">+</button>
+            </div>
+        </div>
     </label>
 
     <label>
         Number of Imposters:
-        <input type="number" id="imposters" value="1">
+        <div class="num-input-wrapper">
+            <input type="number" id="imposters" value="1">
+            <div class="num-btns">
+                <button onclick="changeValue('imposters', -1)">−</button>
+                <button onclick="changeValue('imposters', 1)">+</button>
+            </div>
+        </div>
     </label>
 
     <button id="generateBtn">Generate Game</button>
@@ -36,7 +52,16 @@
 
     <button id="nextBtn" style="display:none;">Next Player</button>
 </div>
+
 <script>
+function changeValue(id, amount) {
+    const input = document.getElementById(id);
+    let value = parseInt(input.value) + amount;
+    if (value < 0) value = 0;
+    input.value = value;
+}
+
+// --- Game logic ---
 const cards = [
 "Knight","Archers","Goblins","Minions","Barbarians","Skeletons","Bomber","Spear Goblins",
 "Minion Horde","Royal Giant","Ice Spirit","Fire Spirit","Goblin Gang","Elite Barbarians","Royal Recruits",
@@ -58,7 +83,7 @@ const cards = [
 
 let gameCards = [];
 let currentPlayer = 0;
-let showCard = false; // toggle state
+let showCard = false;
 
 document.getElementById('generateBtn').addEventListener('click', () => {
     const numPlayers = parseInt(document.getElementById('players').value);
@@ -69,13 +94,10 @@ document.getElementById('generateBtn').addEventListener('click', () => {
         return;
     }
 
-    // Pick a random card for regular players
     const chosenCard = cards[Math.floor(Math.random() * cards.length)];
 
-    // Initialize gameCards array
     gameCards = Array(numPlayers).fill(chosenCard);
 
-    // Randomly assign imposters
     let imposterIndices = [];
     while(imposterIndices.length < numImposters){
         let index = Math.floor(Math.random() * numPlayers);
@@ -98,11 +120,9 @@ document.getElementById('nextBtn').addEventListener('click', () => {
     }
 
     if(!showCard){
-        // First click: show player number
         document.getElementById('output').innerHTML = `Player ${currentPlayer + 1}`;
         showCard = true;
     } else {
-        // Second click: show their card
         document.getElementById('output').innerHTML = `Player ${currentPlayer + 1}: ${gameCards[currentPlayer]}`;
         currentPlayer++;
         showCard = false;
