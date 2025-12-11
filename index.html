@@ -6,24 +6,32 @@
 <title>Clash Royale Spy Game</title>
 <link rel="stylesheet" href="style.css">
 <style>
-  body { font-family: Arial, sans-serif; padding: 20px; }
+  body { font-family: 'Trebuchet MS', sans-serif; padding: 20px; }
   input { width: 50px; margin-right: 10px; }
   button { margin: 10px 0; }
   #output { margin-top: 20px; font-size: 18px; }
 </style>
 </head>
 <body>
+<div class="container">
+    <h1>Clash Royale Spy Game</h1>
 
-<h1>Clash Royale Spy Game</h1>
+    <label>
+        Number of Players:
+        <input type="number" id="players" value="4">
+    </label>
 
-<label>Number of Players: <input type="number" id="players" value="4"></label>
-<label>Number of Imposters: <input type="number" id="imposters" value="1"></label>
-<button id="generateBtn">Generate Game</button>
+    <label>
+        Number of Imposters:
+        <input type="number" id="imposters" value="1">
+    </label>
 
-<div id="output"></div>
+    <button id="generateBtn">Generate Game</button>
 
-<button id="nextBtn" style="display:none;">Next Player</button>
+    <div id="output"></div>
 
+    <button id="nextBtn" style="display:none;">Next Player</button>
+</div>
 <script>
 const cards = [
 "Knight","Archers","Goblins","Minions","Barbarians","Skeletons","Bomber","Spear Goblins",
@@ -46,6 +54,7 @@ const cards = [
 
 let gameCards = [];
 let currentPlayer = 0;
+let showCard = false; // toggle state
 
 document.getElementById('generateBtn').addEventListener('click', () => {
     const numPlayers = parseInt(document.getElementById('players').value);
@@ -73,16 +82,26 @@ document.getElementById('generateBtn').addEventListener('click', () => {
     }
 
     currentPlayer = 0;
+    showCard = false;
     document.getElementById('output').innerHTML = "Game Generated! Press 'Next Player' to reveal cards.";
     document.getElementById('nextBtn').style.display = "inline-block";
 });
 
 document.getElementById('nextBtn').addEventListener('click', () => {
-    if(currentPlayer < gameCards.length){
+    if(currentPlayer >= gameCards.length){
+        document.getElementById('output').innerHTML = "All players have seen their cards!";
+        return;
+    }
+
+    if(!showCard){
+        // First click: show player number
+        document.getElementById('output').innerHTML = `Player ${currentPlayer + 1}`;
+        showCard = true;
+    } else {
+        // Second click: show their card
         document.getElementById('output').innerHTML = `Player ${currentPlayer + 1}: ${gameCards[currentPlayer]}`;
         currentPlayer++;
-    } else {
-        document.getElementById('output').innerHTML = "All players have seen their cards!";
+        showCard = false;
     }
 });
 </script>
