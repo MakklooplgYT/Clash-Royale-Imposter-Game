@@ -25,8 +25,12 @@ input, button{
   border: 1px solid;
   border-radius: 10px;
 }
+input{
+  box-shadow: 0 0 0.8em rgba(255, 255, 255, 0.3);
+}
 button:hover{
   background-color:white;
+  box-shadow: 0 0 1.2em rgba(255, 255, 255, 0.4);
 }
 h1, h2, h3, h4, h5, label, button, div, input {
   font-family: 'Trebuchet MS', sans-serif;
