@@ -80,7 +80,7 @@ header .header-discord {
   }
   /* Button and Input */
   button, input{
-    font-size:1em;
+    font-size:0.8em;
     background-color: rgba(0, 0, 0, 0);
     border:2px solid white;
     border-radius: 10px;
