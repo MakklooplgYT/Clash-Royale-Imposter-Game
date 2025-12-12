@@ -60,7 +60,7 @@ header .header-logo {
     height: auto;
     display: block;
 }
-header .header-discord {
+header .header-discord, header .header-github {
   margin-left:20px;
   margin-right:20px;
 }
