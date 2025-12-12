@@ -25,26 +25,20 @@
   /* content box */
   .main-box {
     min-height: 50vh;
-    width:80%;
-    max-width:800px;
+    width: 80%;
+    max-width: 800px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align:center;
+    text-align: center;
     background: linear-gradient(135deg, rgba(54, 66, 82, 0.4) 0%, rgba(74, 74, 74, 0.4) 50%, rgba(54, 66, 82, 0.4) 100%);
-    border:3px solid black;
+    border: 3px solid black;
     border-radius: 20px;
-    padding-top: 10vh;
-    padding-bottom: 10vh;
-    padding-right: 2vw;
-    padding-left: 2vw;
-    margin-left:20px;
-    margin-right:20px;
-    margin-bottom:80px;
-    margin-top:250px;
+    padding: 10vh 2vw;
+    margin: 250px 20px 80px 20px;
     box-shadow: 0 0 2em rgba(115, 123, 139, 0.4);
-  }
+}
   /* Header */
  header {
     position: sticky;
@@ -124,8 +118,14 @@ header img {
       border-radius: 10px;
   }
 /* Responsive CSS */
-@media only screen and (max-width: 600px) {
+/* Mobile adjustments */
+@media only screen and (max-width: 768px) {
   html{
     font-size: 1.2em;
+  }
+  .main-box {
+    margin-bottom: 150px; 
+    padding-top: 5vh; 
+    padding-bottom: 5vh;
   }
 }
