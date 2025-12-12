@@ -33,7 +33,7 @@
     align-items: center;
     text-align: center;
     background: linear-gradient(135deg, rgba(54, 66, 82, 0.4) 0%, rgba(74, 74, 74, 0.4) 50%, rgba(54, 66, 82, 0.4) 100%);
-    border: 3px solid white;
+    border: 3px solid #4A4A4A;
     border-radius: 20px;
     padding: 10vh 2vw;
     margin: 150px 20px 80px 20px;
